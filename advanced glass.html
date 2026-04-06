@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing glass metamorphic</title>
+    <style>
+        body {
+            height: 100vh; /* FIXED */
+            background: linear-gradient(100deg, #6615b1, #b694d6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .glowing-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            pointer-events: auto;
+            filter: blur(5px);
+        }
+        .glowing-box-container{
+            filter: contrast(10) blur(10px);
+            background: linear-gradient(100deg, #330e57, #a17ec2);
+        }
+        .glowing-box1, .glowing-box2, .glowing-box3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+        .glowing-box1 {
+            background-color: rgb(150, 60, 255); /* FIXED (was lch) */
+            width: 600px;
+            height: 600px;
+            transition: 0.7s ease-in-out;  
+            animation: rotate1 9s alternate infinite;
+        }
+        .glowing-box2 {
+            background-color: rgb(200, 120, 255); /* FIXED (was lch) */
+            width: 550px;
+            height: 550px;
+            transition: 0.7s ease-in-out;  
+            animation: rotate2 10s alternate infinite;
+        }
+        .glowing-box3 {
+            background-color: rgb(234, 164, 255);
+            width: 500px;
+            height: 500px;
+            transition: 0.7s ease-in-out;  /* FIXED (removed 'smooth') */
+            animation: rotate3 9s alternate infinite;
+        }
+        @keyframes rotate1 {
+            0% { border-radius: 70% 55% 85% 100%; }
+            25% { border-radius: 85% 40% 50% 70%; }
+            50% { border-radius: 40% 59% 75% 65%; }
+            75% { border-radius: 60% 30% 70% 40%; }
+            100% { border-radius: 55% 80% 40% 85%; }
+        }
+        @keyframes rotate2 {
+            0% { border-radius: 50% 75% 65% 100%; }
+            25% { border-radius: 40% 45% 60% 45%; }
+            50% { border-radius: 55% 50% 65% 75%; }
+            75% { border-radius: 70% 60% 40% 60%; }
+            100% { border-radius: 75% 50% 50% 75%; }
+        }
+        @keyframes rotate3 {
+            0% { border-radius: 50% 75% 45% 100%; }
+            25% { border-radius: 45% 50% 50% 45%; }
+            50% { border-radius: 55% 83% 65% 55%; }
+            75% { border-radius: 50% 80% 50% 90%; }
+            100% { border-radius: 45% 50% 50% 60%; }
+        }
+        .login-pager{
+            z-index: 999;
+            background:rgba( 255, 255, 255, 0.001);
+            border-radius: 50%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: rgb(235, 205, 226);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .glass-input{
+           width:100% ;
+           min-width: 300px;
+           margin-bottom: 6px;
+           padding: 7px 10px;
+           background-color: transparent;
+           border: transparent;
+           box-sizing:border-box;
+           font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+           border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+        }
+        .glass-input::placeholder{
+            color: antiquewhite;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(0);
+        }
+        .glass-input:focus::placeholder{
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        .glass-input:focus{
+            outline: none;
+            box-shadow: 0 5px 15px -5px rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-group div{ 
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .other{
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
+        .submit button{
+            background-color:rgb(150, 60, 255);
+            border: transparent;
+            border-radius: 4px;
+            color: antiquewhite;
+            margin-top: 10px;
+            width: 200px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            transform: translateY(0);
+            transition: all 0.5s ease-in-out;
+        }
+        .submit button:hover{
+           transform: translateY(4px);
+        }
+        .options button{
+             background-color:rgb(150, 60, 255);
+            border: transparent;
+            border-radius: 4px;
+            color: antiquewhite;
+            margin-top: 20px;
+            width: 200px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            transform: translateY(0);
+            transition: all 0.5s ease-in-out;
+        }
+        .options button:hover{
+            transform: translateY(2px);
+        }
+    </style>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const remember = confirm('Would you like us to remember your login details?');
+            if(remember) {
+                console.log('Setting login cookies...');
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="glowing-box">
+        <div class="glowing-box1"></div>
+        <div class="glowing-box2"></div>
+        <div class="glowing-box3"></div>
+    </div>
+    <div class="login-page">
+        <form class="login-pager">
+            <h1>Welcome Back</h1>
+        <p class="subtitle">Please sign in to your account</p>
+            <div class="input-group">
+                <div><input class="glass-input" type="text" id="Username" placeholder="Username"></div>
+                <div><input class="glass-input" type="email" id="email" placeholder="Email"></div>
+                <div><input class="glass-input" type="password" id="password" placeholder="Password"></div>
+            </div>
+            <div class="submit">
+                <button type="submit">Sign In</button>
+            </div> 
+        <div><p><b><i>______________or______________</i></b></p></div>
+        <div class="options">
+            <div><button type="submit">Sign in with Google</button></div>
+            <div><button type="submit">Sign in with Microsoft</button></div>
+            <div><button type="submit">Sign in with GitHub</button></div>
+        </div>
+        <div class="account">
+            <p>Don't have an account?<a href style="display: contents;">Create one now</a></p>
+        </div>
+        </form>
+    </div>              
+</body>
+</html>
